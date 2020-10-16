@@ -1,0 +1,16 @@
+DIAMANTI1
+
+	Lport 1:
+		mac address:                                e8:66:c4:04:0d:a9
+		Total NVMEoE control frame credits:         8192
+		Total NVMEoE data frame credits:            8192
+		Hash table:
+		Number of Buckets:                          1024
+		Number of Entries:                          512
+	Lport 3:
+		mac address:                                e8:66:c4:04:0d:ab
+		Total NVMEoE control frame credits:         8192
+		Total NVMEoE data frame credits:            8192
+		Hash table:
+		Number of Buckets:                          1024
+		Number of Entries:                          512

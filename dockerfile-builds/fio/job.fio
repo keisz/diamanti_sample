@@ -1,0 +1,16 @@
+[global]
+ioengine=libaio
+rw=${RW}
+numjobs=${NJ}
+direct=${DIRECT}
+bs=${BLOCK_SIZE}
+filename=${DEV}
+runtime=${RT}
+time_based=1
+iodepth=${QD}
+size=${SIZE}
+group_reporting
+rwmixread=${RWRPCT}
+rwmixwrite=${RWWPCT}
+
+[randwritejob]

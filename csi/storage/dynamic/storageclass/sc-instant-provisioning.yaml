@@ -1,0 +1,14 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: csi-sc-instant-provisioning
+provisioner: dcx.csi.diamanti.com
+reclaimPolicy: Delete
+parameters:
+  mirrorCount: "1"
+  perfTier: "high"
+  selectors: '{"node":"node1"}'
+  fsType: "ext4"
+
+# Required for PVC resize support
+allowVolumeExpansion: true

@@ -1,0 +1,99 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    diamanti.com/endpoint0: '{"network":"blue","perfTier":"high"}'
+  creationTimestamp: 2019-02-05T23:30:42Z
+  generateName: postgres-1-
+  labels:
+    app: postgres
+    diamanti.com/app: postgres-1
+  name: postgres-1-sczs7
+  namespace: default
+  ownerReferences:
+  - apiVersion: v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicationController
+    name: postgres-1
+    uid: 0d907065-299e-11e9-9cc2-a4bf0114777b
+  resourceVersion: "33069"
+  selfLink: /api/v1/namespaces/default/pods/postgres-1-sczs7
+  uid: 0d9100ef-299e-11e9-9cc2-a4bf0114777b
+spec:
+  containers:
+  - env:
+    - name: POSTGRES_USER
+      value: pgbench
+    - name: POSTGRES_PASSWORD
+      value: password
+    - name: PGDATA
+      value: /var/lib/postgresql/data/pgdata
+    image: postgres
+    imagePullPolicy: IfNotPresent
+    name: postgres
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/lib/postgresql/data/pgdata
+      name: data
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-lg69x
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  nodeName: se43
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: postgres-1-claim
+  - name: default-token-lg69x
+    secret:
+      defaultMode: 420
+      secretName: default-token-lg69x
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: 2019-02-05T23:30:46Z
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: 2019-02-05T23:31:08Z
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: 2019-02-05T23:30:46Z
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://61d98ab246f44d1a1d68096ace4b646689d8f0fd0c2f7f0d415ecdfd3cf27d16
+    image: docker.io/postgres:latest
+    imageID: docker-pullable://docker.io/postgres@sha256:4b8d2a83873b0721a09bed00ba7aa1a45569ac1d763ca6873460626a6e8bd1a5
+    lastState: {}
+    name: postgres
+    ready: true
+    restartCount: 0
+    state:
+      running:
+        startedAt: 2019-02-05T23:31:08Z
+  hostIP: 172.16.12.6
+  phase: Running
+  podIP: 172.16.26.37
+  qosClass: BestEffort
+  startTime: 2019-02-05T23:30:46Z

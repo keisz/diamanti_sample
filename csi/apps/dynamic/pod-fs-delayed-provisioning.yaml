@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: csi-pod-filesystem-delayed-provisioning
+spec:
+  containers:
+    - name: web-server
+      image: nginx
+      volumeMounts:
+        - name: datavol-fs-delayed-provisioning
+          mountPath: /var/lib/www
+  volumes:
+    - name: datavol-fs-delayed-provisioning
+      persistentVolumeClaim:
+        claimName: csi-pvc-filesystem-delayed-provisioning
+        readOnly: false
+

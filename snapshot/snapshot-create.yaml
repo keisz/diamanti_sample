@@ -1,0 +1,8 @@
+kind: VolumeSnapshot
+group:
+apiVersion: volumesnapshot.external-storage.k8s.io/v1
+metadata:
+   name: test-snapshot
+   namespace: default
+spec:
+   persistentVolumeClaimName: test-pvc

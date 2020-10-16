@@ -1,0 +1,952 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: mysql-1-claim
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20G
+    storageClassName: high
+  status:
+    phase: Pending
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null 
+    labels:
+      app: mysql-1
+    name: mysql-1
+    namespace: default
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mysql-1
+    template:
+      metadata:
+        annotations:
+          diamanti.com/endpoint0: '{"network":"default","perfTier":"high"}'
+        creationTimestamp: null
+        labels:
+          app: mysql-1
+      spec:
+        containers:
+        - args:
+          - --datadir=/var/lib/mysql/mysql
+          env:
+          - name: MYSQL_ALLOW_EMPTY_PASSWORD
+            value: "yes"
+          image: mysql
+          imagePullPolicy: IfNotPresent
+          name: mysql
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: volume-1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: volume-1
+          persistentVolumeClaim:
+            claimName: mysql-1-claim
+  status:
+    replicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: null
+    name: mysql-1
+  spec:
+    clusterIP: None
+    ports:
+    - name: port
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      app: mysql-1
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: mysql-2-claim
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20G
+    storageClassName: high
+  status:
+    phase: Pending
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null 
+    labels:
+      app: mysql-2
+    name: mysql-2
+    namespace: default
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mysql-2
+    template:
+      metadata:
+        annotations:
+          diamanti.com/endpoint0: '{"network":"default","perfTier":"high"}'
+        creationTimestamp: null
+        labels:
+          app: mysql-2
+      spec:
+        containers:
+        - args:
+          - --datadir=/var/lib/mysql/mysql
+          env:
+          - name: MYSQL_ALLOW_EMPTY_PASSWORD
+            value: "yes"
+          image: mysql
+          imagePullPolicy: IfNotPresent
+          name: mysql
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: volume-1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: volume-1
+          persistentVolumeClaim:
+            claimName: mysql-2-claim
+  status:
+    replicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: null
+    name: mysql-2
+  spec:
+    clusterIP: None
+    ports:
+    - name: port
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      app: mysql-2
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: mysql-3-claim
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20G
+    storageClassName: high
+  status:
+    phase: Pending
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null 
+    labels:
+      app: mysql-3
+    name: mysql-3
+    namespace: default
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mysql-3
+    template:
+      metadata:
+        annotations:
+          diamanti.com/endpoint0: '{"network":"default","perfTier":"high"}'
+        creationTimestamp: null
+        labels:
+          app: mysql-3
+      spec:
+        containers:
+        - args:
+          - --datadir=/var/lib/mysql/mysql
+          env:
+          - name: MYSQL_ALLOW_EMPTY_PASSWORD
+            value: "yes"
+          image: mysql
+          imagePullPolicy: IfNotPresent
+          name: mysql
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: volume-1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: volume-1
+          persistentVolumeClaim:
+            claimName: mysql-3-claim
+  status:
+    replicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: null
+    name: mysql-3
+  spec:
+    clusterIP: None
+    ports:
+    - name: port
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      app: mysql-3
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: mysql-4-claim
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20G
+    storageClassName: high
+  status:
+    phase: Pending
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null 
+    labels:
+      app: mysql-4
+    name: mysql-4
+    namespace: default
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mysql-4
+    template:
+      metadata:
+        annotations:
+          diamanti.com/endpoint0: '{"network":"default","perfTier":"high"}'
+        creationTimestamp: null
+        labels:
+          app: mysql-4
+      spec:
+        containers:
+        - args:
+          - --datadir=/var/lib/mysql/mysql
+          env:
+          - name: MYSQL_ALLOW_EMPTY_PASSWORD
+            value: "yes"
+          image: mysql
+          imagePullPolicy: IfNotPresent
+          name: mysql
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: volume-1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: volume-1
+          persistentVolumeClaim:
+            claimName: mysql-4-claim
+  status:
+    replicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: null
+    name: mysql-4
+  spec:
+    clusterIP: None
+    ports:
+    - name: port
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      app: mysql-4
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: mysql-5-claim
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20G
+    storageClassName: high
+  status:
+    phase: Pending
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null 
+    labels:
+      app: mysql-5
+    name: mysql-5
+    namespace: default
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mysql-5
+    template:
+      metadata:
+        annotations:
+          diamanti.com/endpoint0: '{"network":"default","perfTier":"high"}'
+        creationTimestamp: null
+        labels:
+          app: mysql-5
+      spec:
+        containers:
+        - args:
+          - --datadir=/var/lib/mysql/mysql
+          env:
+          - name: MYSQL_ALLOW_EMPTY_PASSWORD
+            value: "yes"
+          image: mysql
+          imagePullPolicy: IfNotPresent
+          name: mysql
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: volume-1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: volume-1
+          persistentVolumeClaim:
+            claimName: mysql-5-claim
+  status:
+    replicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: null
+    name: mysql-5
+  spec:
+    clusterIP: None
+    ports:
+    - name: port
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      app: mysql-5
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: mysql-6-claim
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20G
+    storageClassName: high
+  status:
+    phase: Pending
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null 
+    labels:
+      app: mysql-6
+    name: mysql-6
+    namespace: default
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mysql-6
+    template:
+      metadata:
+        annotations:
+          diamanti.com/endpoint0: '{"network":"default","perfTier":"high"}'
+        creationTimestamp: null
+        labels:
+          app: mysql-6
+      spec:
+        containers:
+        - args:
+          - --datadir=/var/lib/mysql/mysql
+          env:
+          - name: MYSQL_ALLOW_EMPTY_PASSWORD
+            value: "yes"
+          image: mysql
+          imagePullPolicy: IfNotPresent
+          name: mysql
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: volume-1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: volume-1
+          persistentVolumeClaim:
+            claimName: mysql-6-claim
+  status:
+    replicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: null
+    name: mysql-6
+  spec:
+    clusterIP: None
+    ports:
+    - name: port
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      app: mysql-6
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: mysql-7-claim
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20G
+    storageClassName: high
+  status:
+    phase: Pending
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null 
+    labels:
+      app: mysql-7
+    name: mysql-7
+    namespace: default
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mysql-7
+    template:
+      metadata:
+        annotations:
+          diamanti.com/endpoint0: '{"network":"default","perfTier":"high"}'
+        creationTimestamp: null
+        labels:
+          app: mysql-7
+      spec:
+        containers:
+        - args:
+          - --datadir=/var/lib/mysql/mysql
+          env:
+          - name: MYSQL_ALLOW_EMPTY_PASSWORD
+            value: "yes"
+          image: mysql
+          imagePullPolicy: IfNotPresent
+          name: mysql
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: volume-1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: volume-1
+          persistentVolumeClaim:
+            claimName: mysql-7-claim
+  status:
+    replicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: null
+    name: mysql-7
+  spec:
+    clusterIP: None
+    ports:
+    - name: port
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      app: mysql-7
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: mysql-8-claim
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20G
+    storageClassName: high
+  status:
+    phase: Pending
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null 
+    labels:
+      app: mysql-8
+    name: mysql-8
+    namespace: default
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mysql-8
+    template:
+      metadata:
+        annotations:
+          diamanti.com/endpoint0: '{"network":"default","perfTier":"high"}'
+        creationTimestamp: null
+        labels:
+          app: mysql-8
+      spec:
+        containers:
+        - args:
+          - --datadir=/var/lib/mysql/mysql
+          env:
+          - name: MYSQL_ALLOW_EMPTY_PASSWORD
+            value: "yes"
+          image: mysql
+          imagePullPolicy: IfNotPresent
+          name: mysql
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: volume-1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: volume-1
+          persistentVolumeClaim:
+            claimName: mysql-8-claim
+  status:
+    replicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: null
+    name: mysql-8
+  spec:
+    clusterIP: None
+    ports:
+    - name: port
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      app: mysql-8
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: mysql-9-claim
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20G
+    storageClassName: high
+  status:
+    phase: Pending
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null 
+    labels:
+      app: mysql-9
+    name: mysql-9
+    namespace: default
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mysql-9
+    template:
+      metadata:
+        annotations:
+          diamanti.com/endpoint0: '{"network":"default","perfTier":"high"}'
+        creationTimestamp: null
+        labels:
+          app: mysql-9
+      spec:
+        containers:
+        - args:
+          - --datadir=/var/lib/mysql/mysql
+          env:
+          - name: MYSQL_ALLOW_EMPTY_PASSWORD
+            value: "yes"
+          image: mysql
+          imagePullPolicy: IfNotPresent
+          name: mysql
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: volume-1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: volume-1
+          persistentVolumeClaim:
+            claimName: mysql-9-claim
+  status:
+    replicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: null
+    name: mysql-9
+  spec:
+    clusterIP: None
+    ports:
+    - name: port
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      app: mysql-9
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: mysql-10-claim
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20G
+    storageClassName: high
+  status:
+    phase: Pending
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null 
+    labels:
+      app: mysql-10
+    name: mysql-10
+    namespace: default
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mysql-10
+    template:
+      metadata:
+        annotations:
+          diamanti.com/endpoint0: '{"network":"default","perfTier":"high"}'
+        creationTimestamp: null
+        labels:
+          app: mysql-10
+      spec:
+        containers:
+        - args:
+          - --datadir=/var/lib/mysql/mysql
+          env:
+          - name: MYSQL_ALLOW_EMPTY_PASSWORD
+            value: "yes"
+          image: mysql
+          imagePullPolicy: IfNotPresent
+          name: mysql
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: volume-1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: volume-1
+          persistentVolumeClaim:
+            claimName: mysql-10-claim
+  status:
+    replicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: null
+    name: mysql-10
+  spec:
+    clusterIP: None
+    ports:
+    - name: port
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      app: mysql-10
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: mysql-11-claim
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20G
+    storageClassName: high
+  status:
+    phase: Pending
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null 
+    labels:
+      app: mysql-11
+    name: mysql-11
+    namespace: default
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mysql-11
+    template:
+      metadata:
+        annotations:
+          diamanti.com/endpoint0: '{"network":"default","perfTier":"high"}'
+        creationTimestamp: null
+        labels:
+          app: mysql-11
+      spec:
+        containers:
+        - args:
+          - --datadir=/var/lib/mysql/mysql
+          env:
+          - name: MYSQL_ALLOW_EMPTY_PASSWORD
+            value: "yes"
+          image: mysql
+          imagePullPolicy: IfNotPresent
+          name: mysql
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: volume-1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: volume-1
+          persistentVolumeClaim:
+            claimName: mysql-11-claim
+  status:
+    replicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: null
+    name: mysql-11
+  spec:
+    clusterIP: None
+    ports:
+    - name: port
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      app: mysql-11
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    creationTimestamp: null
+    name: mysql-12-claim
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20G
+    storageClassName: high
+  status:
+    phase: Pending
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    creationTimestamp: null 
+    labels:
+      app: mysql-12
+    name: mysql-12
+    namespace: default
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mysql-12
+    template:
+      metadata:
+        annotations:
+          diamanti.com/endpoint0: '{"network":"default","perfTier":"high"}'
+        creationTimestamp: null
+        labels:
+          app: mysql-12
+      spec:
+        containers:
+        - args:
+          - --datadir=/var/lib/mysql/mysql
+          env:
+          - name: MYSQL_ALLOW_EMPTY_PASSWORD
+            value: "yes"
+          image: mysql
+          imagePullPolicy: IfNotPresent
+          name: mysql
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: volume-1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: volume-1
+          persistentVolumeClaim:
+            claimName: mysql-12-claim
+  status:
+    replicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: null
+    name: mysql-12
+  spec:
+    clusterIP: None
+    ports:
+    - name: port
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      app: mysql-12
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+kind: List
+metadata: {}

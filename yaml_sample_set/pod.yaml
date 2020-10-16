@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testcentos
+spec:
+  containers:
+    - name: testcentos
+      image: docker.io/keisz/testcentos:latest
+      command:
+        - sleep
+        - infinity
+

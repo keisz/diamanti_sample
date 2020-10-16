@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: csi-pod-block-instant-provisioning
+spec:
+  containers:
+    - name: web-server
+      image: nginx
+      volumeDevices:
+        - devicePath: /dev/vdisk1
+          name: datavol-blk-instant-provisioning
+  volumes:
+    - name: datavol-blk-instant-provisioning
+      persistentVolumeClaim:
+        claimName: csi-pvc-block-instant-provisioning
+        readOnly: false
+

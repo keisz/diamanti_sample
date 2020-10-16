@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    diamanti.com/endpoint0: '{"network":"noise","perfTier":"high"}'
+  creationTimestamp: null
+  name: ycsbm
+  namespace: default
+spec:
+  containers:
+  - command:
+    - sleep
+    - "10000000000"
+    image: diamanti/ycsb-mongo:latest
+    imagePullPolicy: Always
+    name: loadgen
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+  dnsPolicy: ClusterFirst
+  nodeSelector:
+    nodetype: loadgen
+  restartPolicy: OnFailure
+  schedulerName: default-scheduler
+  securityContext: {}
+  terminationGracePeriodSeconds: 30
+status: {}

@@ -1,0 +1,9 @@
+apiVersion: snapshot.storage.k8s.io/v1alpha1
+kind: VolumeSnapshot
+metadata:
+  name: csi-pvc-block-snapshot
+spec:
+  snapshotClassName: csi-snapshotclass
+  source:
+    name: csi-pvc-block-instant-provisioning
+    kind: PersistentVolumeClaim

@@ -1,0 +1,16 @@
+apiVersion: storage.diamanti.com/v1alpha1
+kind: VolumeReplicationConfig
+metadata:
+  name: test-replication-config
+  namespace: default
+spec:
+  schedule: "*/5 * * * *"
+  maxDurationInMinutes: 10
+  maxNumSnapshots: 2
+  nfsServerEndpoint: ep1
+  volumes:
+    - persistentVolumeClaimName: test-pvc1
+      storageClassName: high
+    - persistentVolumeClaimName: test-pvc2
+      storageClassName: medium
+    - persistentVolumeClaimName: test-pvc3

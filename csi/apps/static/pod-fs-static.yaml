@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: csi-pod-filesystem-static
+spec:
+  containers:
+    - name: web-server
+      image: nginx
+      volumeMounts:
+        - name: datavol-filesystem-static
+          mountPath: /var/lib/www
+  volumes:
+    - name: datavol-filesystem-static
+      persistentVolumeClaim:
+        claimName: csi-pvc-filesystem-static
+        readOnly: false

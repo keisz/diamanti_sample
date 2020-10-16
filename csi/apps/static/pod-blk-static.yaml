@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: csi-pod-block-static
+spec:
+  containers:
+    - name: web-server
+      image: nginx
+      volumeDevices:
+        - devicePath: /dev/vdisk1
+          name: datavol-block-static
+  volumes:
+    - name: datavol-block-static
+      persistentVolumeClaim:
+        claimName: csi-pvc-block-static
+        readOnly: false

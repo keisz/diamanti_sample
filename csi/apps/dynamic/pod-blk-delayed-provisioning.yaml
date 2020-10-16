@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: csi-pod-block-delayed-provisioning
+spec:
+  containers:
+    - name: web-server
+      image: nginx
+      volumeDevices:
+        - devicePath: /dev/vdisk1
+          name: datavol-blk-delayed-provisioning
+  volumes:
+    - name: datavol-blk-delayed-provisioning
+      persistentVolumeClaim:
+        claimName: csi-pvc-block-delayed-provisioning
+        readOnly: false
+
